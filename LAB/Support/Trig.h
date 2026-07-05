@@ -175,8 +175,12 @@ namespace lab {
 		const F absY = Abs(y);
 
 		const bool yBigger = absY > absX;
+
+		const F safeY = absY == F(0) ? F(1) : absY;
+		const F safeX = absX == F(0) ? F(1) : absX;
+
 		//const F minOverMax = Min(absX, absY) / Max(absX, absY);
-		const F minOverMax = absX / absY * F(yBigger) + absY / absX * F(!yBigger);
+		const F minOverMax = absX / safeY * F(yBigger) + absY / safeX * F(!yBigger);
 
 		const F t4 = minOverMax * minOverMax;
 		F t0 = 		  -F(0.013480470);

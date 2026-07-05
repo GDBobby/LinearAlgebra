@@ -82,6 +82,12 @@ namespace lab{
                 y * other.y
             };
         }
+        LAB_constexpr Vector operator/(Vector const other) const {
+            return {
+                x / other.x,
+                y / other.y
+            };
+        }
 
 
         LAB_constexpr void operator*=(F const multiplier) {

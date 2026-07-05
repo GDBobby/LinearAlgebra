@@ -77,6 +77,26 @@ namespace lab{
         //but realistically, projection should be changed maybe once per scene? less? not a big deal
         orthoMat = OrthographicMatrix(bottom, top, left, right, close_distance, far_distance);
     }
+    template<std::floating_point F>
+    LAB_constexpr Matrix<F, 3, 3> OrthographicMatrix2D(F const bottom, F const top, F const left, F const right) {
+        const F rMl = right - left;
+        const F tMb = top - bottom;
+
+        Matrix<F, 3, 3> ret;
+        ret.columns[0][0] = F(2) / rMl;
+        ret.columns[0][1] = F(0);
+        ret.columns[0][2] = F(0);
+
+        ret.columns[1][0] = F(0);
+        ret.columns[1][1] = F(2) / tMb;
+        ret.columns[1][2] = F(0);
+
+        ret.columns[2][0] = -(right + left) / rMl;
+        ret.columns[2][1] = -(top + bottom) / tMb;
+        ret.columns[2][2] = F(1);
+
+        return ret;
+    }
 
     template<typename CS, std::floating_point F>
     requires(IsCoordinateSystem<CS>::value)
