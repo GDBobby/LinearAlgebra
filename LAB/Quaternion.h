@@ -17,7 +17,9 @@ namespace lab{
         LAB_constexpr Quaternion() : x{F(0)}, y{F(0)}, z{F(0)}, w{F(0)} {}
         LAB_constexpr Quaternion(F const x, F const y, F const z, F const w) : x{x}, y{y}, z{z}, w{w} {}
 
-        LAB_constexpr Quaternion(const Matrix<F, 4, 4>& matrix) {
+        LAB_constexpr Quaternion(Vector<F, 4> const& vec) : x{vec.x}, y{vec.y}, z{vec.z}, w{vec.w} {}
+
+        LAB_constexpr Quaternion(Matrix<F, 4, 4> const& matrix) {
             const F trace = matrix.At(0, 0) + matrix.At(1, 1) + matrix.At(2, 2) + F(1);
 
             if (trace > F(1)) {
@@ -64,6 +66,10 @@ namespace lab{
 		static LAB_constexpr Quaternion FromMatrix(Matrix<F, 4, 4> const& matrix) {
 			return Quaternion(matrix);
 		}
+
+        LAB_constexpr operator Vector<F, 4>() const {
+            return Vector<F, 4>{x, y, z, w};
+        }
 
         LAB_constexpr F SquaredMagnitude() const{
             return x * x + y * y + z * z + w * w;

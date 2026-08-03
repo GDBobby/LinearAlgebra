@@ -11,8 +11,8 @@ namespace lab {
 
 		template<uint8_t Alignment = 3> requires(Alignment >= 3)
 		LAB_constexpr Matrix<F, 3, 3, Alignment> ToMatrix() const{
-			const float cosine = Cos(rotation);
-			const float sine = Sin(rotation);
+			const F cosine = Cos(rotation);
+			const F sine = Sin(rotation);
 			Matrix<F, 3, 3, Alignment> ret;
 			ret.columns[0][0] = scale.x * cosine;
 			ret.columns[0][1] = scale.x * sine;
@@ -30,8 +30,8 @@ namespace lab {
 		}
 
 		LAB_constexpr Matrix<F, 4, 4> ToMat4(const float depth) const {
-			const float cosine = Cos(rotation);
-			const float sine = Sin(rotation);
+			const F cosine = Cos(rotation);
+			const F sine = Sin(rotation);
 			Matrix<F, 4, 4> ret;
 			ret.columns[0][0] = scale.x * cosine;
 			ret.columns[0][1] = scale.x * sine;
@@ -57,8 +57,6 @@ namespace lab {
 	
 		template<uint8_t Alignment = 3> requires(Alignment >= 3)
 		LAB_constexpr Matrix<F, 3, 3, Alignment> ToMatrixNoRotation() const {
-			//const float cosine = glm::cos(rotation);
-			//const float sine = glm::sin(rotation);
 			Matrix<F, 3, 3, Alignment> ret{F(0)};
 			ret.columns[0][0] = scale.x;
 			ret.columns[1][1] = scale.y;

@@ -98,4 +98,8 @@ namespace lab {
     using ivec2 = IntVector<int, 2>;
     using ivec3 = IntVector<int, 3>;
     using ivec4 = IntVector<int, 4>;
+
+	using uvec2 = IntVector<uint32_t, 2>;
+	using uvec3 = IntVector<uint32_t, 3>;
+	using uvec4 = IntVector<uint32_t, 4>;
 }
